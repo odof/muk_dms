@@ -104,8 +104,7 @@ class Directory(dms_base.DMSModel):
     
     size = fields.Integer(
         compute='_compute_size',
-        string="Size", 
-        store=True)    
+        string="Size")
     
     custom_thumbnail = fields.Binary(
         string="Custom Thumbnail")
@@ -181,8 +180,6 @@ class Directory(dms_base.DMSModel):
         if "path" in fields:
             values.update(self.with_context(operation=operation)._compute_path(write=False))
             values.update(self.with_context(operation=operation)._compute_relational_path(write=False))
-        if "size" in fields:
-            values.update(self.with_context(operation=operation)._compute_size(write=False))
         if values:
             self.write(values);   
             if "settings" in fields or "path" in fields:
@@ -238,20 +235,13 @@ class Directory(dms_base.DMSModel):
             return {'relational_path': get_relational_path(self)}        
     
     def _compute_size(self, write=True):
-        def get_size(record):
-            size = 0
-            for directory in record.child_directories:
-                size += directory.size
-            for file in record.files:
-                size += file.size
-            return size
-        if write:
-            for record in self:
-                record.size = get_size(record)
-        else:
-            self.ensure_one()
-            return {'size': get_size(self)}        
-    
+        # Modification OpenFire:
+        # Suite au retrait du store=True de la taille des dossiers,
+        #  optimisation de la fonction de calcul
+        dms_file_obj = self.env['muk_dms.file']
+        for record in self:
+            record.size = sum(dms_file_obj.search([('directory', 'child_of', record.id)]).mapped('size'))
+
     @api.depends('child_directories')
     def _compute_count_directories(self):
         for record in self:
