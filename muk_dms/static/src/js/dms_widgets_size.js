@@ -34,7 +34,7 @@ function format_size(bytes, si) {
     }
     var units = si
         ? ['kB','MB','GB','TB','PB','EB','ZB','YB']
-        : ['KiB','MiB','GiB','TiB','PiB','EiB','ZiB','YiB'];
+        : ['Ko','Mo','Go','To','Po','Eo','Zo','Yo'];
     var u = -1;
     do {
         bytes /= thresh;
