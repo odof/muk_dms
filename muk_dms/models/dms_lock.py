@@ -22,6 +22,7 @@
 import logging
 
 from odoo import models, api, fields
+import unidecode
 
 _logger = logging.getLogger(__name__)
 
@@ -55,4 +56,4 @@ class Lock(models.Model):
     @api.one
     @api.depends('lock_ref')
     def _compute_name(self):
-        self.name = "Lock for " + str(self.lock_ref.name)
+        self.name = "Lock for " + unidecode.unidecode(self.lock_ref.name)

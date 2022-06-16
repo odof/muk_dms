@@ -24,7 +24,7 @@
 			                    Edit
 			                </button>
 			                 <button accesskey="F" class="create_directory btn btn-sm btn-default" type="button">
-			                    Create Direcotry
+			                    Create Directory
 			                </button>
 			                 <button accesskey="D" class="create_file btn btn-sm btn-default" type="button">
 			                    Create File

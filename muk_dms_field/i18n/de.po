@@ -161,7 +161,7 @@ msgstr "\"<strong>%s</strong>\" anlegen"
 #. openerp-web
 #: code:addons/muk_dms/static/src/xml/dms_views.xml:26
 #, python-format
-msgid "Create Direcotry"
+msgid "Create Directory"
 msgstr "Verzeichnis anlegen"
 
 #. module: muk_dms
