@@ -289,10 +289,9 @@ class DMSBaseModel(models.BaseModel):
         return result
 
     @api.multi
-    def unlink(self):     
+    def unlink(self):
         self._before_unlink()
-        for record in self:
-            record._before_unlink_record()
+        self._before_unlink_record()
         result = super(DMSBaseModel, self).unlink()
         self._after_unlink(result)
         return result

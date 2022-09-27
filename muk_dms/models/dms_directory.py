@@ -346,7 +346,10 @@ class Directory(dms_base.DMSModel):
             
     def _before_unlink_record(self):
         super(Directory, self)._before_unlink_record()
-        for directory in self.child_directories:
-            directory.unlink()
-        for file in self.files:
-            file.unlink()
+        directories = self.mapped('child_directories')
+        files = self.mapped('files')
+        if directories:
+            # This check prevents infinite loop of empty unlink calls
+            directories.unlink()
+        if files:
+            files.unlink()

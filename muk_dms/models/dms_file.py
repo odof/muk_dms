@@ -359,8 +359,12 @@ class File(dms_base.DMSModel):
         return self.reference.sudo().content() if self.reference else None
     
     def _unlink_reference(self):
-        self.ensure_one()
         self.check_access('unlink', raise_exception=True)
-        if self.reference:
-            self.reference.sudo().delete()
-            self.reference.sudo().unlink()
+        references = []
+        for file in self:
+            if file.reference:
+                file.reference.sudo().delete()
+                references.append(file.reference)
+        # References may contain records from different models, inheriting muk_dms.data abstract class
+        for ref in references:
+            ref.unlink()
