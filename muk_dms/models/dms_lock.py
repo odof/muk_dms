@@ -55,4 +55,4 @@ class Lock(models.Model):
     @api.one
     @api.depends('lock_ref')
     def _compute_name(self):
-        self.name = "Lock for " + str(self.lock_ref.name)
+        self.name = "Lock for " + (self.lock_ref.name or '')
