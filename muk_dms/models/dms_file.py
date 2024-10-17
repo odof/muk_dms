@@ -76,7 +76,8 @@ class File(dms_base.DMSModel):
         string="Directory",
         ondelete='restrict',  
         auto_join=True,
-        required=True)
+        required=True,
+        index=True)
     
     extension = fields.Char(
         string='Extension',
