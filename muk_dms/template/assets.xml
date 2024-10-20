@@ -32,7 +32,8 @@
 		<script type="text/javascript" src="/muk_dms/static/lib/jquery-splitter/js/jquery.splitter.js" />
 		<script type="text/javascript" src="/muk_dms/static/lib/jsTree/jstree.js" />
 		<script type="text/javascript" src="/muk_dms/static/src/js/dms_utils.js" />
-		<script type="text/javascript" src="/muk_dms/static/src/js/client_refresh.js" />
+		<!-- OF Modification OpenFire - Désactivation de l'auto refresh des vues -->
+		<!-- <script type="text/javascript" src="/muk_dms/static/src/js/client_refresh.js" /> -->
 		<script type="text/javascript" src="/muk_dms/static/src/js/preview_helper.js" />
 		<script type="text/javascript" src="/muk_dms/static/src/js/dms_widgets_size.js" />
 		<script type="text/javascript" src="/muk_dms/static/src/js/dms_widgets_path.js" />
